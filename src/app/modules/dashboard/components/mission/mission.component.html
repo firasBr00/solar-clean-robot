@@ -1,0 +1,42 @@
+<div *ngIf="isOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Ajouter une nouvelle mission</h2>
+    <form [formGroup]="missionForm">
+      <div class="form-group">
+        <label for="robot_id">Robot:</label>
+        <select id="robot_id" formControlName="robot_id" required>
+          <option value="">Sélectionnez un robot</option>
+          <option *ngFor="let robot of robots" [value]="robot.id">
+            {{ robot.name }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="heure_debut">Heure de début:</label>
+        <input type="datetime-local" id="heure_debut" formControlName="heure_debut" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="heure_fin">Heure de fin:</label>
+        <input type="datetime-local" id="heure_fin" formControlName="heure_fin" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Points de mission:</label>
+        <div formArrayName="points">
+          <div *ngFor="let point of points.controls; let i = index" [formGroupName]="i" class="point-item">
+            <input type="text" formControlName="coordinates" placeholder="Coordonnées (x,y,z)" required>
+            <button type="button" class="remove-btn">×</button>
+          </div>
+        </div>
+        <button type="button" class="add-point-btn">+ Ajouter un point</button>
+      </div>
+      
+      <div class="form-actions">
+        <button  type="button" (click)="onClose()" class="cancel-btn">Annuler</button>
+        <button type="submit" class="submit-btn">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>

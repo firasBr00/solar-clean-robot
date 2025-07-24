@@ -1,0 +1,13 @@
+<div class="mission-card">
+  <ng-container *ngIf="missionEnCours; else noMission">
+    <h3>Mission en cours</h3>
+    <p><strong>Début :</strong> {{ missionEnCours.dateDebut }}</p>
+    <p><strong>Zone :</strong> {{ missionEnCours.zone }}</p>
+    <p><strong>Surface :</strong> {{ missionEnCours.surface }}</p>
+    <p><strong>Objectif :</strong> {{ missionEnCours.objectif }}</p>
+  </ng-container>
+
+  <ng-template #noMission>
+    <p>Aucune mission en cours pour ce robot.</p>
+  </ng-template>
+</div>

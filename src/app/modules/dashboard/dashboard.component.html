@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+  <div class="robot-list">
+    <h2>Liste des Robots</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Statut</th>
+          <th>Dernier Nettoyage</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let robot of robots" 
+            [class.selected]="robot === selectedRobot"
+            (click)="onSelectRobot(robot)">
+          <td>{{robot.id}}</td>
+          <td>{{robot.name}}</td>
+          <td [class.status-active]="robot.status === 'Actif'"
+              [class.status-maintenance]="robot.status === 'En maintenance'"
+              [class.status-offline]="robot.status === 'Hors ligne'">
+            {{robot.status}}
+          </td>
+          <td>{{robot.lastCleaning ? (robot.lastCleaning | date:'mediumDate') : 'Jamais'}}</td>
+          <td>
+            <button (click)="onDeleteRobot(robot.id); $event.stopPropagation()">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <button class="add-button" (click)="onAddRobot()">
+       Ajouter un nouveau robot
+    </button>
+    <button (click)="openMissionModal()" class="add-button">
+    Ajouter une mission
+  </button>
+  </div>
+
+  <div *ngIf="selectedRobot" class="robot-dashboard">
+    <!--<app-dashboard-home *ngIf="selectedRobot" [robotId]="selectedRobot.id"></app-dashboard-home>-->
+  </div>
+</div>

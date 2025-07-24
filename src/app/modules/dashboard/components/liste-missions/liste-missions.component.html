@@ -1,0 +1,16 @@
+<h2>Liste des missions du robot</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Date</th>
+    <th>Statut</th>
+    <th>Surface</th>
+  </tr>
+  <tr *ngFor="let mission of missions">
+    <td>{{ mission.id }}</td>
+    <td>{{ mission.date }}</td>
+    <td>{{ mission.status }}</td>
+    <td>{{ mission.surface }}</td>
+  </tr>
+</table>
+<button routerLink="/">Retour</button>

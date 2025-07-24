@@ -1,0 +1,12 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Contrôle du Robot Solaire</h1>
+    <div class="last-updated">Dernière mise à jour: {{ lastUpdated | date:'medium' }}</div>
+  </header>
+
+  <div class="dashboard-grid">
+    <app-status-panel class="grid-item status" [robotData]="robotStatus"></app-status-panel>
+    <app-cleaning-map class="grid-item map"></app-cleaning-map>
+    <app-alerts-feed class="grid-item alerts"></app-alerts-feed>
+  </div>
+</div>
